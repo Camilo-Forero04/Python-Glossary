@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Dictionary</h1>
+{% with previus_letter="" %}
+{% endwith %}
+{% for word in words %}
+    {% if word.word.0 != previous_letter %}
+        <h2>{{word.word.0}}</h2>
+    {% endif %}
+    <article>
+        <h2>{{ word.word }}</h2>
+        <p>{{ word.meaning }}</p> 
+    </article>
+    {% with previous_letter=word.word.0 %}
+    {% endwith %}
+{% endfor %}
+<form>
+    {{ form }}
+    <button name="save">Save</button>
+</form>
+    <a href="{% url 'about' %}">About</a>
+{% endblock %}
